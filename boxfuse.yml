@@ -24,7 +24,9 @@
       args:
         chdir: /tmp/boxfuse-sample-java-war-hello/
     - name: Get file from remote
-        fetch: src="/tmp/boxfuse-sample-java-war-hello/target/hello-1.0.war" dest="/"
+      fetch:
+        src: /tmp/boxfuse-sample-java-war-hello/target/hello-1.0.war
+        dest: /
         delegate_to: 'build'
         tags: fetch
 
@@ -37,9 +39,11 @@
         name: tomcat9
         state: present
     - name: Send file to remote
-      copy: src="hello-1.0.war" dest="/var/lib/tomcat9/webapps/"
-      delegate_to: 'prod'
-      tags: fetch
+      copy:
+        src: hello-1.0.war
+        dest: /var/lib/tomcat9/webapps/
+        delegate_to: 'prod'
+        tags: fetch
     - name: Ensure tomcat9 service is ctarted
       service:
         name: tomcat9
