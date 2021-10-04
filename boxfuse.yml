@@ -15,12 +15,12 @@
       apt:
         name: maven
         state: present
-    - name: clear /tmp
-      shell: rm -rf /tmp/*
     - name: clone repository
-      shell: git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
-      args:
-        chdir: /tmp/
+      git:
+        repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+        dest: /tmp
+        clone: yes
+        update: yes
     - name: build package
       shell: mvn package
       args:
@@ -43,6 +43,7 @@
       copy:
         src: tmp/hello-1.0.war
         dest: /var/lib/tomcat9/webapps/
+        flat: yes
     - name: Ensure tomcat9 service is ctarted
       service:
         name: tomcat9
