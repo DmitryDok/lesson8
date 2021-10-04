@@ -24,7 +24,8 @@
         repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
         dest: /tmp/
         clone: yes
-     - name: build package
+        update: yes
+    - name: build package
       shell: mvn package
       args:
         chdir: /tmp/boxfuse-sample-java-war-hello/
