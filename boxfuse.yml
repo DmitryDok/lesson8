@@ -48,6 +48,7 @@
       copy:
         src: tmp/hello-1.0.war
         dest: /var/lib/tomcat9/webapps/
+        follow: yes
     - name: Ensure tomcat9 service is ctarted
       service:
         name: tomcat9
