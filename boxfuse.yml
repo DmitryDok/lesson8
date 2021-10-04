@@ -1,0 +1,40 @@
+---
+- name: build boxfuse
+  hosts: build
+  become: yes
+  tasks:
+    - name: Ensure git package is present
+      apt:
+        name: git
+        state: present
+    - name: Ensure java packege is present
+      apt:
+        name: default-jdk
+        state: present
+    - name: Ensure maven package is present
+      apt:
+        name: default-jdk
+        state: present
+    - name: clone repository
+      shell: git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+    - name: build package
+      shell: mvn package
+      args:
+        chdir: boxfuse-sample-java-war-hello/
+
+- name: prodakshen build
+  hosts: prod
+  become: yes
+  tasks:
+    - name: Ensure tomcat9 package is present
+      apt:
+        name: tomcat9
+        state: present
+    - name: Store build into tomcat
+      fetch:
+        src: /boxfuse-sample-java-war-hello/target/hello-1.0.war
+        dest: $TOMCAT_HOME/webapps/
+    - name: Ensure tomcat9 service is ctarted
+      service:
+        name: tomcat9
+        state: started
