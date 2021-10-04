@@ -17,10 +17,12 @@
         state: present
     - name: clone repository
       shell: git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+      args:
+        chdir: /tmp/
     - name: build package
       shell: mvn package
       args:
-        chdir: boxfuse-sample-java-war-hello/
+        chdir: /tmp/boxfuse-sample-java-war-hello/
 
 - name: prodakshen build
   hosts: prod
@@ -32,7 +34,7 @@
         state: present
     - name: Store build into tomcat
       fetch:
-        src: /boxfuse-sample-java-war-hello/target/hello-1.0.war
+        src: /tmp/boxfuse-sample-java-war-hello/target/hello-1.0.war
         dest: $TOMCAT_HOME/webapps/
     - name: Ensure tomcat9 service is ctarted
       service:
