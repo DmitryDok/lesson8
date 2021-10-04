@@ -28,7 +28,7 @@
     - name: Get file from build
       fetch:
         src: /tmp/boxfuse-sample-java-war-hello/target/hello-1.0.war
-        dest: /tmp/hello-1.0.war
+        dest: tmp/hello-1.0.war
         flat: yes
 
 - name: prodakshen build
@@ -41,10 +41,8 @@
         state: present
     - name: Send file to remote
       copy:
-        src: /tmp/hello-1.0.war
+        src: tmp/hello-1.0.war
         dest: /var/lib/tomcat9/webapps/
-        delegate_to: 'prod'
-        tags: fetch
     - name: Ensure tomcat9 service is ctarted
       service:
         name: tomcat9
