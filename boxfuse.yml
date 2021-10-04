@@ -17,7 +17,7 @@
         state: present
     - name: clear /tmp
       file:
-        path: /tmp/*
+        path: /tmp/boxfuse-sample-java-war-hello
         state: absent
     - name: clone repository
       git:
