@@ -25,12 +25,10 @@
       shell: mvn package
       args:
         chdir: /tmp/boxfuse-sample-java-war-hello/
-    - name: Get file from remote
+    - name: Get file from build
       fetch:
         src: /tmp/boxfuse-sample-java-war-hello/target/hello-1.0.war
-        dest: /
-        delegate_to: 'build'
-        tags: fetch
+        dest: hello.war-{{build}}
 
 - name: prodakshen build
   hosts: prod
