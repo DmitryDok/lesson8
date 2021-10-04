@@ -15,23 +15,24 @@
       apt:
         name: maven
         state: present
-    - name: clear /tmp
+    - name: create directory
       file:
-        path: /tmp/boxfuse-sample-java-war-hello
-        state: absent
+        path: /home/boxfuse
+        state: directory
+        mode: '0755'
     - name: clone repository
       git:
         repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
-        dest: /tmp/
+        dest: /home/boxfuse
         clone: yes
         update: yes
     - name: build package
       shell: mvn package
       args:
-        chdir: /tmp/boxfuse-sample-java-war-hello/
+        chdir: /home/boxfuse
     - name: Get file from build
       fetch:
-        src: /tmp/boxfuse-sample-java-war-hello/target/hello-1.0.war
+        src: /home/boxfuse/target/hello-1.0.war
         dest: tmp/hello-1.0.war
         flat: yes
 
