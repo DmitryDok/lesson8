@@ -23,6 +23,7 @@
       git:
         repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
         dest: /tmp
+        version: master
     - name: build package
       shell: mvn package
       args:
