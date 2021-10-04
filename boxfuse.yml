@@ -21,10 +21,8 @@
         state: absent
     - name: clone repository
       git:
-        repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
-        dest: /tmp/
-        clone: yes
-        update: yes
+        repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+        dest: /tmp
     - name: build package
       shell: mvn package
       args:
