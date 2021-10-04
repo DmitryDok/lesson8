@@ -28,7 +28,8 @@
     - name: Get file from build
       fetch:
         src: /tmp/boxfuse-sample-java-war-hello/target/hello-1.0.war
-        dest: hello.war-{{build}}
+        dest: /tmp/hello.war/build/tmp/boxfuse-sample-java-war-hello/target/hello-1.0.war
+        flat: yes
 
 - name: prodakshen build
   hosts: prod
