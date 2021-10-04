@@ -15,9 +15,13 @@
       apt:
         name: maven
         state: present
+    - name: clear /tmp
+      file:
+        path: /tmp/*
+        state: absent
     - name: clone repository
       git:
-        repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+        repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
         dest: /tmp
         clone: yes
         update: yes
