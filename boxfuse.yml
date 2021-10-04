@@ -39,7 +39,7 @@
       apt:
         name: tomcat9
         state: present
-    - name: Send file to remote
+    - name: Send file to prod
       copy:
         src: tmp/hello-1.0.war
         dest: /var/lib/tomcat9/webapps/
