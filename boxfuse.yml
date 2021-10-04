@@ -41,7 +41,7 @@
         state: present
     - name: Send file to remote
       copy:
-        src: hello-1.0.war
+        src: /tmp/hello.war
         dest: /var/lib/tomcat9/webapps/
         delegate_to: 'prod'
         tags: fetch
